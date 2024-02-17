@@ -25,7 +25,7 @@ def print_matrix(matrix):
         for element in row:
             if element == 0:
                 row_string = row_string + "*"
-            elif element == 2:
+            elif element == 1:
                 row_string = row_string + "O"
             else:
                 row_string = row_string + "X"
