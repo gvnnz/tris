@@ -19,6 +19,16 @@ def is_valid_input(input_string, matrix):
     else:
         return False
 
+
+def parse_input(input_string, matrix):
+    assert is_valid_input(input_string, matrix)
+    symbol_value = 2 if input_string[0] == "x" else 1
+    row_value = int(input_string[1])
+    column_value = int(input_string[2])
+
+    return (symbol_value, row_value, column_value)
+
+
 def sanitize_input(input_string):
     return input_string.strip()
 
