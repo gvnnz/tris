@@ -2,6 +2,7 @@ import model
 
 matrix = [[0, 0, 0], [1, 0, 0], [0, 1, 0]]
 
+
 def is_valid_input(input_string, matrix):
     if len(input_string) != 3:
         return False
@@ -33,9 +34,11 @@ def sanitize_input(input_string):
     return input_string.strip()
 
 
-input_string = input("Digita o oppure x seguita dalle coordinate: ")
-
-
-input_string = sanitize_input(input_string)
-
-print(input_string)
+# -----------------------------------------------------------------------------------------------
+while True:
+    input_string = input("Digita o oppure x seguita dalle coordinate: ")
+    if input_string == "q":
+        break
+    if is_valid_input(input_string, matrix) == False:
+        print("Invalid input!!!")
+        continue
