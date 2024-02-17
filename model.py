@@ -8,7 +8,7 @@ def is_regular_matrix(matrix):
 def set_matrix_element(matrix, row, column, value):
     assert row < len(matrix)
     assert column < len(matrix[0])
-    assert value == 0 or value == 1
+    assert value == 1 or value == 2
     matrix[row][column] = value
 
 
