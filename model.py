@@ -35,3 +35,14 @@ def print_matrix(matrix):
 def get_matrix_row(matrix, n):
     assert n < len(matrix)
     return matrix[n]
+
+
+def get_matrix_column(matrix, n):
+    assert is_regular_matrix(matrix)
+    assert n < len(matrix[0])
+    count = 0
+    column_list = []
+    for element in matrix:
+        column_list.append(matrix[count][n])
+        count = count + 1
+    return column_list
