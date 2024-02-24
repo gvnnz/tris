@@ -46,3 +46,13 @@ def get_matrix_column(matrix, n):
         column_list.append(matrix[count][n])
         count = count + 1
     return column_list
+
+
+def get_matrix_main_diagonal(matrix):
+    assert is_regular_matrix(matrix)
+    count = 0
+    diagonal_list = []
+    for row in matrix:
+        diagonal_list.append(row[count])
+        count = count + 1
+    return diagonal_list
