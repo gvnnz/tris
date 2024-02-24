@@ -30,3 +30,8 @@ def print_matrix(matrix):
             else:
                 row_string = row_string + "X "
         print(row_string)
+
+
+def get_matrix_row(matrix, n):
+    assert n < len(matrix)
+    return matrix[n]
