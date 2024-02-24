@@ -56,3 +56,15 @@ def get_matrix_main_diagonal(matrix):
         diagonal_list.append(row[count])
         count = count + 1
     return diagonal_list
+
+
+def get_matrix_antidiagonal(matrix):
+    assert is_regular_matrix(matrix)
+    count = len(matrix[0]) - 1
+    diagonal_list = []
+    for row in matrix:
+        diagonal_list.append(row[count])
+        count = count - 1
+        if count < 0:
+            break
+    return diagonal_list
