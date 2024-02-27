@@ -17,8 +17,7 @@ def is_valid_input(input_string, matrix):
         and int(input_string[2]) < len(matrix[0])
     ):
         return True
-    else:
-        return False
+    return False
 
 
 def parse_input(input_string, matrix):
