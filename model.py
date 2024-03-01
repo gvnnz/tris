@@ -19,19 +19,6 @@ def get_matrix_element(matrix, row, column):
     return matrix[row][column]
 
 
-def print_matrix(matrix):
-    for row in matrix:
-        row_string = ""
-        for element in row:
-            if element == 0:
-                row_string = row_string + "* "
-            elif element == 1:
-                row_string = row_string + "O "
-            else:
-                row_string = row_string + "X "
-        print(row_string)
-
-
 def get_matrix_row(matrix, n):
     assert n < len(matrix)
     return matrix[n]
