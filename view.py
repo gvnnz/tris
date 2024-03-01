@@ -6,6 +6,8 @@ def print_matrix(matrix):
                 row_string = row_string + "* "
             elif element == 1:
                 row_string = row_string + "O "
-            else:
+            elif element == 2:
                 row_string = row_string + "X "
+            else:
+                assert False, "Wrong element value: only 0, 1 or 2 allowed"
         print(row_string)
