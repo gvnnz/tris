@@ -74,3 +74,26 @@ def make_matrix(num_rows, num_columns):
             row.append(number)
         matrix.append(row)
     return matrix
+
+
+def is_winner(matrix, symbol_value):
+    # Controllo righe
+    num_rows = len(matrix)
+    for i in range(num_rows):
+        row = get_matrix_row(matrix, i)
+        if all_equal(row, symbol_value):
+            return True
+    # Controllo colonne
+    num_columns = len(matrix[0])
+    for i in range(num_columns):
+        column = get_matrix_column(matrix, i)
+        if all_equal(column, symbol_value):
+            return True
+    # Controllo diagonali
+    main_diagonal = get_matrix_main_diagonal(matrix)
+    if all_equal(main_diagonal, symbol_value):
+        return True
+    antidiagonal = get_matrix_antidiagonal(matrix)
+    if all_equal(antidiagonal, symbol_value):
+        return True
+    return False
