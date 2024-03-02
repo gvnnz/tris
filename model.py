@@ -63,3 +63,14 @@ def all_equal(my_list, n):
         if element != n:
             return False
     return True
+
+
+def make_matrix(num_rows, num_columns):
+    matrix = []
+    for i in range(num_rows):
+        row = []
+        for j in range(num_columns):
+            number = 0
+            row.append(number)
+        matrix.append(row)
+    return matrix
