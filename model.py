@@ -55,3 +55,11 @@ def get_matrix_antidiagonal(matrix):
         if count < 0:
             break
     return diagonal_list
+
+
+# ritorna true se tutti gli elementi della lista sono uguali ad n
+def all_equal(my_list, n):
+    for element in my_list:
+        if element != n:
+            return False
+    return True
