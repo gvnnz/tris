@@ -97,3 +97,11 @@ def is_winner(matrix, symbol_value):
     if all_equal(antidiagonal, symbol_value):
         return True
     return False
+
+
+def matrix_is_all_full(matrix):
+    for row in matrix:
+        for element in row:
+            if element == 0:
+                return False
+    return True
