@@ -1,7 +1,7 @@
 import model
 import view
 
-matrix = [[0, 0, 0], [0, 0, 0], [0, 0, 0]]
+matrix = model.Matrix(3, 3)
 
 
 def is_valid_input(input_string, matrix):
@@ -13,9 +13,9 @@ def is_valid_input(input_string, matrix):
         return False
     if (
         int(input_string[1]) >= 0
-        and int(input_string[1]) < len(matrix)
+        and int(input_string[1]) < matrix.count_rows()
         and int(input_string[2]) >= 0
-        and int(input_string[2]) < len(matrix[0])
+        and int(input_string[2]) < matrix.count_columns()
     ):
         return True
     return False
@@ -36,12 +36,12 @@ def sanitize_input(input_string):
 
 # -----------------------------------------------------------------------------------------------
 while True:
-    input_string = input("Digita o oppure x seguita dalle coordinate: ")
+    input_string = sanitize_input(input("Digita o oppure x seguita dalle coordinate: "))
     if is_valid_input(input_string, matrix) == False:
         print("Invalid input!!!")
         continue
     input_tuple = parse_input(input_string, matrix)
-    model.set_matrix_element(matrix, input_tuple[1], input_tuple[2], input_tuple[0])
+    matrix.set_element(input_tuple[1], input_tuple[2], input_tuple[0])
     view.print_matrix(matrix)
     if model.is_winner(matrix, 1):
         print("Player 1 WIN!!!")
