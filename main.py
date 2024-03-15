@@ -40,6 +40,8 @@ while True:
         symbol_value = 2
     count = count + 1
     input_string = sanitize_input(input("Insert the coordinates: "))
+    if input_string == "q":
+        break
     if is_valid_input(input_string, matrix) == False:
         print("Invalid input!!!")
         continue
