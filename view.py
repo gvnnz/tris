@@ -1,5 +1,5 @@
 def print_matrix(matrix):
-    for row in matrix:
+    for row in matrix.data:
         row_string = ""
         for element in row:
             if element == 0:
