@@ -12,6 +12,12 @@ class Matrix:
             self.data.append(row)
 
     # metodi
+    def count_rows(self):
+        return len(self.data)
+
+    def count_columns(self):
+        return len(self.data[0])
+
     def is_regular(self):
         for row in self.data:
             if len(row) != len(self.data[0]):
@@ -144,29 +150,29 @@ def make_matrix(num_rows, num_columns):
 
 def is_winner(matrix, symbol_value):
     # Controllo righe
-    num_rows = len(matrix)
+    num_rows = matrix.count_rows()
     for i in range(num_rows):
-        row = get_matrix_row(matrix, i)
+        row = matrix.get_row(i)
         if all_equal(row, symbol_value):
             return True
     # Controllo colonne
-    num_columns = len(matrix[0])
+    num_columns = matrix.count_columns()
     for i in range(num_columns):
-        column = get_matrix_column(matrix, i)
+        column = matrix.get_column(i)
         if all_equal(column, symbol_value):
             return True
     # Controllo diagonali
-    main_diagonal = get_matrix_main_diagonal(matrix)
+    main_diagonal = matrix.get_main_diagonal()
     if all_equal(main_diagonal, symbol_value):
         return True
-    antidiagonal = get_matrix_antidiagonal(matrix)
+    antidiagonal = matrix.get_antidiagonal()
     if all_equal(antidiagonal, symbol_value):
         return True
     return False
 
 
 def matrix_is_all_full(matrix):
-    for row in matrix:
+    for row in matrix.data:
         for element in row:
             if element == 0:
                 return False
