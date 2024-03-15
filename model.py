@@ -1,3 +1,69 @@
+class Matrix:
+    # Costruttore
+    def __init__(self, num_rows, num_columns):
+        # proprieta' "data"
+        self.data = []
+
+        for i in range(num_rows):
+            row = []
+            for j in range(num_columns):
+                number = 0
+                row.append(number)
+            self.data.append(row)
+
+    # metodi
+    def is_regular(self):
+        for row in self.data:
+            if len(row) != len(self.data[0]):
+                return False
+        return True
+
+    def set_element(self, row, column, value):
+        assert row < len(self.data)
+        assert column < len(self.data[0])
+        assert value == 1 or value == 2
+        self.data[row][column] = value
+
+    def get_element(self, row, column):
+        assert row < len(self.data)
+        assert column < len(self.data[0])
+        return self.data[row][column]
+
+    def get_row(self, n):
+        assert n < len(self.data)
+        return self.data[n]
+
+    def get_column(self, n):
+        assert self.is_regular()
+        assert n < len(self.data[0])
+        count = 0
+        column_list = []
+        for element in self.data:
+            column_list.append(self.data[count][n])
+            count = count + 1
+        return column_list
+
+    def get_main_diagonal(self):
+        assert self.is_regular()
+        count = 0
+        diagonal_list = []
+        for row in self.data:
+            diagonal_list.append(row[count])
+            count = count + 1
+        return diagonal_list
+
+    def get_antidiagonal(self):
+        assert self.is_regular()
+        count = len(self.data[0]) - 1
+        diagonal_list = []
+        for row in self.data:
+            diagonal_list.append(row[count])
+            count = count - 1
+            if count < 0:
+                break
+        return diagonal_list
+
+
 def is_regular_matrix(matrix):
     for row in matrix:
         if len(row) != len(matrix[0]):
