@@ -46,6 +46,10 @@ while True:
         print("Invalid input!!!")
         continue
     input_tuple = parse_input(input_string, matrix)
+    if matrix.if_is_value_zero(input_tuple[0], input_tuple[1], symbol_value) == True:
+        print("Alredy insert. Select another coordinates")
+        count = count - 1
+        continue
     matrix.set_element(input_tuple[0], input_tuple[1], symbol_value)
     view.print_matrix(matrix)
     if model.is_winner(matrix, 1):
