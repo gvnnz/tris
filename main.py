@@ -32,6 +32,10 @@ def sanitize_input(input_string):
 
 
 # -----------------------------------------------------------------------------------------------
+
+Player_1 = input("Player 1: insert your name, then press enter: ")
+Player_2 = input("Player 2: insert your name, then press enter: ")
+
 count = 0
 while True:
     if count % 2 == 0:
@@ -46,17 +50,20 @@ while True:
         print("Invalid input!!!")
         continue
     input_tuple = parse_input(input_string, matrix)
-    if matrix.if_value_is_not_zero(input_tuple[0], input_tuple[1], symbol_value) == True:
+    if (
+        matrix.if_value_is_not_zero(input_tuple[0], input_tuple[1], symbol_value)
+        == True
+    ):
         print("Alredy insert. Select another coordinates")
         count = count - 1
         continue
     matrix.set_element(input_tuple[0], input_tuple[1], symbol_value)
     view.print_matrix(matrix)
     if model.is_winner(matrix, 1):
-        print("Player 1 WIN!!!")
+        print(Player_1 + " WIN!!!")
         break
     elif model.is_winner(matrix, 2):
-        print("Player 2 WIN!!!")
+        print(Player_2 + " WIN!!!")
         break
     elif model.matrix_is_all_full(matrix):
         print("DRAW")
