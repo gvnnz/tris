@@ -4,10 +4,10 @@ from random import randint
 
 matrix = model.Matrix(3, 3)
 
-random_X = randint(0, 2)
-random_Y = randint(0, 2)
-random_Z = randint(0, 2)
-random_K = randint(0, 2)
+random_X = randint(0, (matrix.count_rows() - 1))
+random_Y = randint(0, (matrix.count_columns() - 1))
+random_Z = randint(0, (matrix.count_rows() - 1))
+random_K = randint(0, (matrix.count_columns() - 1))
 
 
 def is_valid_input(input_string, matrix):
