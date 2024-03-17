@@ -1,7 +1,13 @@
 import model
 import view
+from random import randint
 
 matrix = model.Matrix(3, 3)
+
+random_X = randint(0, 2)
+random_Y = randint(0, 2)
+random_Z = randint(0, 2)
+random_K = randint(0, 2)
 
 
 def is_valid_input(input_string, matrix):
@@ -40,24 +46,30 @@ count = 0
 while True:
     if count % 2 == 0:
         symbol_value = 1
-    else:
+    if count % 2 == 1:
         symbol_value = 2
-    count = count + 1
-    input_string = sanitize_input(input("Insert the coordinates: "))
-    if input_string == "q":
-        break
+    if count == 0:
+        input_string = str(random_X) + str(random_Y)
+    if count == 1:
+        input_string = str(random_Z) + str(random_K)
+    if count > 1:
+        input_string = sanitize_input(input("Insert the coordinates: "))
+        if input_string == "q":
+            break
     if is_valid_input(input_string, matrix) == False:
         print("Invalid input!!!")
         continue
     input_tuple = parse_input(input_string, matrix)
+
     if (
         matrix.if_value_is_not_zero(input_tuple[0], input_tuple[1], symbol_value)
         == True
+        and count != 1
     ):
         print("Alredy insert. Select another coordinates")
-        count = count - 1
         continue
     matrix.set_element(input_tuple[0], input_tuple[1], symbol_value)
+    count = count + 1
     view.print_matrix(matrix)
     if model.is_winner(matrix, 1):
         print(Player_1 + " WIN!!!")
