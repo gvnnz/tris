@@ -53,12 +53,12 @@ while True:
     if count == 1:
         input_string = str(random_Z) + str(random_K)
     if count > 1:
-        if input_string == "q":
-            break
         if count % 2 == 0:
             input_string = sanitize_input(input(player_1 + " insert the coordinates: "))
         else:
             input_string = sanitize_input(input(player_2 + " insert the coordinates: "))
+    if input_string == "q":
+        break  # vvvv
     if is_valid_input(input_string, matrix) == False:
         print("Invalid input!!!")
         continue
@@ -71,7 +71,7 @@ while True:
     ):
         print("Alredy insert. Select another coordinates")
         continue
-    matrix.set_element(input_tuple[0], input_tuple[1], symbol_value)
+    matrix.set_element(input_tuple[0], input_tuple[1], symbol_value)  # chiedere
     count = count + 1
     view.print_matrix(matrix)
     if model.is_winner(matrix, 1):
