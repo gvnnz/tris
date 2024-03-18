@@ -63,12 +63,7 @@ while True:
         print("Invalid input!!!")
         continue
     input_tuple = parse_input(input_string, matrix)
-
-    if (
-        matrix.if_value_is_not_zero(input_tuple[0], input_tuple[1], symbol_value)
-        == True
-        and count != 1
-    ):
+    if matrix.is_element_zero(input_tuple[0], input_tuple[1]) == False and count != 1:
         print("Alredy insert. Select another coordinates")
         continue
     matrix.set_element(input_tuple[0], input_tuple[1], symbol_value)  # chiedere
