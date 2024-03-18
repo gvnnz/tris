@@ -30,9 +30,10 @@ class Matrix:
         assert value == 1 or value == 2
         self.data[row][column] = value
 
-    def if_value_is_not_zero(self, row, column, value):
-        if self.data[row][column] == 1 or self.data[row][column] == 2:
+    def is_element_zero(self, row, column):
+        if self.get_element(row, column) == 0:
             return True
+        return False
 
     def get_element(self, row, column):
         assert row < len(self.data)
