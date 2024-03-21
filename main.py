@@ -48,29 +48,29 @@ random_Z = random.randint(0, (matrix.count_rows() - 1))
 random_K = random.randint(0, (matrix.count_columns() - 1))
 
 
+matrix.set_element(random_X, random_Y, 1)
+matrix.set_element(random_Z, random_K, 2)
+
+
 player_1 = input("Player 1: insert your name, then press enter: ")
 player_2 = input("Player 2: insert your name, then press enter: ")
 
+view.print_matrix(matrix)
 
 count = 0
 while True:
     symbol_value = get_current_symbol_value(count)
-    if count == 0:
-        input_string = str(random_X) + str(random_Y)
-    if count == 1:
-        input_string = str(random_Z) + str(random_K)
-    if count > 1:
-        if count % 2 == 0:
-            input_string = sanitize_input(input(player_1 + " insert the coordinates: "))
-        else:
-            input_string = sanitize_input(input(player_2 + " insert the coordinates: "))
+    if count % 2 == 0:
+        input_string = sanitize_input(input(player_1 + " insert the coordinates: "))
+    else:
+        input_string = sanitize_input(input(player_2 + " insert the coordinates: "))
     if input_string == "q":
         break  # vvvv
     if is_valid_input(input_string, matrix) == False:
         print("Invalid input!!!")
         continue
     input_tuple = parse_input(input_string, matrix)
-    if matrix.is_element_zero(input_tuple[0], input_tuple[1]) == False and count != 1:
+    if matrix.is_element_zero(input_tuple[0], input_tuple[1]) == False:
         print("Alredy insert. Select another coordinates")
         continue
     matrix.set_element(input_tuple[0], input_tuple[1], symbol_value)
