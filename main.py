@@ -30,6 +30,12 @@ def sanitize_input(input_string):
     return input_string.strip()
 
 
+def get_current_symbol_value(count):
+    if count % 2 == 0:
+        return 1
+    return 2
+
+
 # -----------------------------------------------------------------------------------------------
 
 matrix = model.Matrix(3, 3)
@@ -46,10 +52,7 @@ player_2 = input("Player 2: insert your name, then press enter: ")
 
 count = 0
 while True:
-    if count % 2 == 0:
-        symbol_value = 1
-    if count % 2 == 1:
-        symbol_value = 2
+    symbol_value = get_current_symbol_value(count)
     if count == 0:
         input_string = str(random_X) + str(random_Y)
     if count == 1:
