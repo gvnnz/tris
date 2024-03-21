@@ -2,13 +2,6 @@ import model
 import view
 import random
 
-matrix = model.Matrix(3, 3)
-
-random_X = random.randint(0, (matrix.count_rows() - 1))
-random_Y = random.randint(0, (matrix.count_columns() - 1))
-random_Z = random.randint(0, (matrix.count_rows() - 1))
-random_K = random.randint(0, (matrix.count_columns() - 1))
-
 
 def is_valid_input(input_string, matrix):
     if len(input_string) != 2:
@@ -39,8 +32,17 @@ def sanitize_input(input_string):
 
 # -----------------------------------------------------------------------------------------------
 
+matrix = model.Matrix(3, 3)
+
+random_X = random.randint(0, (matrix.count_rows() - 1))
+random_Y = random.randint(0, (matrix.count_columns() - 1))
+random_Z = random.randint(0, (matrix.count_rows() - 1))
+random_K = random.randint(0, (matrix.count_columns() - 1))
+
+
 player_1 = input("Player 1: insert your name, then press enter: ")
 player_2 = input("Player 2: insert your name, then press enter: ")
+
 
 count = 0
 while True:
@@ -58,7 +60,7 @@ while True:
         else:
             input_string = sanitize_input(input(player_2 + " insert the coordinates: "))
     if input_string == "q":
-        break
+        break  # vvvv
     if is_valid_input(input_string, matrix) == False:
         print("Invalid input!!!")
         continue
