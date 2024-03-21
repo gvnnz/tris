@@ -6,13 +6,15 @@ import random
 def is_valid_input(input_string, matrix):
     if len(input_string) != 2:
         return False
-    if input_string[0].isdigit() == False or input_string[1].isdigit() == False:
+    row_value = input_string[0]
+    column_value = input_string[1]
+    if row_value.isdigit() == False or column_value.isdigit() == False:
         return False
     if (
-        int(input_string[0]) >= 0
-        and int(input_string[0]) < matrix.count_rows()
-        and int(input_string[1]) >= 0
-        and int(input_string[1]) < matrix.count_columns()
+        int(row_value) >= 0
+        and int(row_value) < matrix.count_rows()
+        and int(column_value) >= 0
+        and int(column_value) < matrix.count_columns()
     ):
         return True
     return False
