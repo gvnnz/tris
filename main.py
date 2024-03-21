@@ -38,6 +38,12 @@ def get_current_symbol_value(count):
     return 2
 
 
+def get_current_player_name(count, player_1, player_2):
+    if count % 2 == 0:
+        return player_1
+    return player_2
+
+
 # -----------------------------------------------------------------------------------------------
 
 matrix = model.Matrix(3, 3)
@@ -60,10 +66,8 @@ view.print_matrix(matrix)
 count = 0
 while True:
     symbol_value = get_current_symbol_value(count)
-    if count % 2 == 0:
-        input_string = sanitize_input(input(player_1 + " insert the coordinates: "))
-    else:
-        input_string = sanitize_input(input(player_2 + " insert the coordinates: "))
+    player_name = get_current_player_name(count, player_1, player_2)
+    input_string = sanitize_input(input(player_name + " insert the coordinates: "))
     if input_string == "q":
         break  # vvvv
     if is_valid_input(input_string, matrix) == False:
