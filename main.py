@@ -38,10 +38,15 @@ def get_current_symbol_value(count):
     return 2
 
 
-def get_current_player_name(count, player_1, player_2):
-    if count % 2 == 0:
-        return player_1
-    return player_2
+def get_current_player_name(random_value, count, player_1, player_2):
+    if random_value == 0:
+        if count % 2 == 0:
+            return player_1 + " (O)"
+        return player_2 + " (X)"
+    else:
+        if count % 2 == 0:
+            return player_2 + " (O)"
+        return player_1 + " (X)"
 
 
 # -----------------------------------------------------------------------------------------------
@@ -52,7 +57,7 @@ random_X = random.randint(0, (matrix.count_rows() - 1))
 random_Y = random.randint(0, (matrix.count_columns() - 1))
 random_Z = random.randint(0, (matrix.count_rows() - 1))
 random_K = random.randint(0, (matrix.count_columns() - 1))
-
+random_value = random.randint(0, 1)
 
 matrix.set_element(random_X, random_Y, 1)
 matrix.set_element(random_Z, random_K, 2)
@@ -66,7 +71,7 @@ view.print_matrix(matrix)
 count = 0
 while True:
     symbol_value = get_current_symbol_value(count)
-    player_name = get_current_player_name(count, player_1, player_2)
+    player_name = get_current_player_name(random_value, count, player_1, player_2)
     input_string = sanitize_input(input(player_name + " insert the coordinates: "))
     if input_string == "q":
         break  # vvvv
