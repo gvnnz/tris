@@ -32,13 +32,7 @@ def sanitize_input(input_string):
     return input_string.strip()
 
 
-def get_current_symbol_value(count):
-    if count % 2 == 0:
-        return 1
-    return 2
-
-
-def get_current_player_name(count, player_1, player_2):
+def get_current_player(count, player_1, player_2):
     if count % 2 == 0:
         return player_1
     return player_2
@@ -58,16 +52,21 @@ matrix.set_element(random_X, random_Y, 1)
 matrix.set_element(random_Z, random_K, 2)
 
 
-player_1 = input("Player 1: insert your name, then press enter: ")
-player_2 = input("Player 2: insert your name, then press enter: ")
+player_1_name = input("Player 1: insert your name, then press enter: ")
+player_2_name = input("Player 2: insert your name, then press enter: ")
+
+player_1 = model.Player(player_1_name, 1)
+player_2 = model.Player(player_2_name, 2)
 
 view.print_matrix(matrix)
 
 count = 0
 while True:
-    symbol_value = get_current_symbol_value(count)
-    player_name = get_current_player_name(count, player_1, player_2)
-    input_string = sanitize_input(input(player_name + " insert the coordinates: "))
+    current_player = get_current_player(count, player_1, player_2)
+
+    input_string = sanitize_input(
+        input(current_player.name + " insert the coordinates: ")
+    )
     if input_string == "q":
         break  # vvvv
     if is_valid_input(input_string, matrix) == False:
@@ -77,14 +76,14 @@ while True:
     if matrix.is_element_zero(input_tuple[0], input_tuple[1]) == False:
         print("Alredy insert. Select another coordinates")
         continue
-    matrix.set_element(input_tuple[0], input_tuple[1], symbol_value)
+    matrix.set_element(input_tuple[0], input_tuple[1], current_player.symbol_value)
     count = count + 1
     view.print_matrix(matrix)
-    if model.is_winner(matrix, 1):
-        print(player_1 + " WIN!!!")
+    if model.is_winner(matrix, player_1.symbol_value):
+        print(player_1.name + " WIN!!!")
         break
-    elif model.is_winner(matrix, 2):
-        print(player_2 + " WIN!!!")
+    elif model.is_winner(matrix, player_2.symbol_value):
+        print(player_2.name + " WIN!!!")
         break
     elif model.matrix_is_all_full(matrix):
         print("DRAW")
