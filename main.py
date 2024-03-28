@@ -1,25 +1,20 @@
 import model
 import view
-from random import randint
-
-matrix = model.Matrix(3, 3)
-
-random_X = randint(0, (matrix.count_rows() - 1))
-random_Y = randint(0, (matrix.count_columns() - 1))
-random_Z = randint(0, (matrix.count_rows() - 1))
-random_K = randint(0, (matrix.count_columns() - 1))
+import random
 
 
 def is_valid_input(input_string, matrix):
     if len(input_string) != 2:
         return False
-    if input_string[0].isdigit() == False or input_string[1].isdigit() == False:
+    row_value = input_string[0]
+    column_value = input_string[1]
+    if row_value.isdigit() == False or column_value.isdigit() == False:
         return False
     if (
-        int(input_string[0]) >= 0
-        and int(input_string[0]) < matrix.count_rows()
-        and int(input_string[1]) >= 0
-        and int(input_string[1]) < matrix.count_columns()
+        int(row_value) >= 0
+        and int(row_value) < matrix.count_rows()
+        and int(column_value) >= 0
+        and int(column_value) < matrix.count_columns()
     ):
         return True
     return False
@@ -37,43 +32,58 @@ def sanitize_input(input_string):
     return input_string.strip()
 
 
+def get_current_player(count, player_1, player_2):
+    if count % 2 == 0:
+        return player_1
+    return player_2
+
+
 # -----------------------------------------------------------------------------------------------
 
-player_1 = input("Player 1: insert your name, then press enter: ")
-player_2 = input("Player 2: insert your name, then press enter: ")
+matrix = model.Matrix(3, 3)
+
+random_X = random.randint(0, (matrix.count_rows() - 1))
+random_Y = random.randint(0, (matrix.count_columns() - 1))
+random_Z = random.randint(0, (matrix.count_rows() - 1))
+random_K = random.randint(0, (matrix.count_columns() - 1))
+
+
+matrix.set_element(random_X, random_Y, 1)
+matrix.set_element(random_Z, random_K, 2)
+
+
+player_1_name = input("Player 1: insert your name, then press enter: ")
+player_2_name = input("Player 2: insert your name, then press enter: ")
+
+player_1 = model.Player(player_1_name, 1)
+player_2 = model.Player(player_2_name, 2)
+
+view.print_matrix(matrix)
 
 count = 0
 while True:
-    if count % 2 == 0:
-        symbol_value = 1
-    if count % 2 == 1:
-        symbol_value = 2
-    if count == 0:
-        input_string = str(random_X) + str(random_Y)
-    if count == 1:
-        input_string = str(random_Z) + str(random_K)
-    if count > 1:
-        if count % 2 == 0:
-            input_string = sanitize_input(input(player_1 + " insert the coordinates: "))
-        else:
-            input_string = sanitize_input(input(player_2 + " insert the coordinates: "))
+    current_player = get_current_player(count, player_1, player_2)
+
+    input_string = sanitize_input(
+        input(current_player.name + " insert the coordinates: ")
+    )
     if input_string == "q":
         break  # vvvv
     if is_valid_input(input_string, matrix) == False:
         print("Invalid input!!!")
         continue
     input_tuple = parse_input(input_string, matrix)
-    if matrix.is_element_zero(input_tuple[0], input_tuple[1]) == False and count != 1:
+    if matrix.is_element_zero(input_tuple[0], input_tuple[1]) == False:
         print("Alredy insert. Select another coordinates")
         continue
-    matrix.set_element(input_tuple[0], input_tuple[1], symbol_value)  # chiedere
+    matrix.set_element(input_tuple[0], input_tuple[1], current_player.symbol_value)
     count = count + 1
     view.print_matrix(matrix)
-    if model.is_winner(matrix, 1):
-        print(player_1 + " WIN!!!")
+    if model.is_winner(matrix, player_1.symbol_value):
+        print(player_1.name + " WIN!!!")
         break
-    elif model.is_winner(matrix, 2):
-        print(player_2 + " WIN!!!")
+    elif model.is_winner(matrix, player_2.symbol_value):
+        print(player_2.name + " WIN!!!")
         break
     elif model.matrix_is_all_full(matrix):
         print("DRAW")

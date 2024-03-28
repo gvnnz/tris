@@ -1,3 +1,9 @@
+class Player:
+    def __init__(self, name, symbol_value):
+        self.name = name
+        self.symbol_value = symbol_value
+
+
 class Matrix:
     # Costruttore
     def __init__(self, num_rows, num_columns):
