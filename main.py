@@ -38,19 +38,27 @@ def get_current_player(turn_counter, player_1, player_2):
     return player_2
 
 
+def set_random_symbols(matrix):
+    random_X = random.randint(0, (matrix.count_rows() - 1))
+    random_Y = random.randint(0, (matrix.count_columns() - 1))
+    random_Z = random.randint(0, (matrix.count_rows() - 1))
+    random_K = random.randint(0, (matrix.count_columns() - 1))
+
+    while random_X == random_Z and random_Y == random_K:
+        random_Z = random.randint(0, (matrix.count_rows() - 1))
+        random_K = random.randint(0, (matrix.count_columns() - 1))
+        if random_X != random_Z or random_Y != random_K:
+            break
+
+    matrix.set_element(random_X, random_Y, 1)
+    matrix.set_element(random_Z, random_K, 2)
+
+
 # -----------------------------------------------------------------------------------------------
 
 matrix = model.Matrix(3, 3)
 
-random_X = random.randint(0, (matrix.count_rows() - 1))
-random_Y = random.randint(0, (matrix.count_columns() - 1))
-random_Z = random.randint(0, (matrix.count_rows() - 1))
-random_K = random.randint(0, (matrix.count_columns() - 1))
-
-
-matrix.set_element(random_X, random_Y, 1)
-matrix.set_element(random_Z, random_K, 2)
-
+set_random_symbols(matrix)
 
 player_1_name = input("Player 1: insert your name, then press enter: ")
 player_2_name = input("Player 2: insert your name, then press enter: ")
