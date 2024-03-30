@@ -60,15 +60,12 @@ player_2 = model.Player(player_2_name, 2)
 
 view.print_matrix(matrix)
 
-turn_counter = 0
+"""
+Prima di iniziare il gioco si sceglie a random il giocatore che deve iniziare, 
+randomizzando il contatore. TODO - rendere questa feature configurabile (#28).
+"""
+turn_counter = random.randint(0, 1)
 while True:
-    """Prima di iniziare il gioco (turn_counter = 0) si sceglie a random il giocatore
-    che deve iniziare, randomizzando il contatore. TODO - rendere questa feature
-    configurabile (#28).
-    """
-    if turn_counter == 0:
-        turn_counter = random.randint(0, 1)
-
     current_player = get_current_player(turn_counter, player_1, player_2)
 
     input_string = sanitize_input(
