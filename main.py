@@ -62,6 +62,13 @@ view.print_matrix(matrix)
 
 count = 0
 while True:
+    """Prima di iniziare il gioco (count = 0) si sceglie a random il giocatore
+    che deve iniziare, randomizzando il contatore. TODO - rendere questa feature
+    configurabile (#28).
+    """
+    if count == 0:
+        count = random.randint(0, 1)
+
     current_player = get_current_player(count, player_1, player_2)
 
     input_string = sanitize_input(
