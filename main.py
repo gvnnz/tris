@@ -32,8 +32,8 @@ def sanitize_input(input_string):
     return input_string.strip()
 
 
-def get_current_player(count, player_1, player_2):
-    if count % 2 == 0:
+def get_current_player(turn_counter, player_1, player_2):
+    if turn_counter % 2 == 0:
         return player_1
     return player_2
 
@@ -60,16 +60,16 @@ player_2 = model.Player(player_2_name, 2)
 
 view.print_matrix(matrix)
 
-count = 0
+turn_counter = 0
 while True:
-    """Prima di iniziare il gioco (count = 0) si sceglie a random il giocatore
+    """Prima di iniziare il gioco (turn_counter = 0) si sceglie a random il giocatore
     che deve iniziare, randomizzando il contatore. TODO - rendere questa feature
     configurabile (#28).
     """
-    if count == 0:
-        count = random.randint(0, 1)
+    if turn_counter == 0:
+        turn_counter = random.randint(0, 1)
 
-    current_player = get_current_player(count, player_1, player_2)
+    current_player = get_current_player(turn_counter, player_1, player_2)
 
     input_string = sanitize_input(
         input(current_player.name + " insert the coordinates: ")
@@ -84,7 +84,7 @@ while True:
         print("Alredy insert. Select another coordinates")
         continue
     matrix.set_element(input_tuple[0], input_tuple[1], current_player.symbol_value)
-    count = count + 1
+    turn_counter = turn_counter + 1
     view.print_matrix(matrix)
     if model.is_winner(matrix, player_1.symbol_value):
         print(player_1.name + " WIN!!!")
