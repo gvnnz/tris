@@ -60,8 +60,8 @@ matrix = model.Matrix(3, 3)
 
 set_random_symbols(matrix)
 
-player_1_name = input("Player 1: insert your name, then press enter: ")
-player_2_name = input("Player 2: insert your name, then press enter: ")
+player_1_name = sanitize_input(input("Player 1: insert your name, then press enter: "))
+player_2_name = sanitize_input(input("Player 2: insert your name, then press enter: "))
 
 player_1 = model.Player(player_1_name, 1)
 player_2 = model.Player(player_2_name, 2)
