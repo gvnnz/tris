@@ -61,7 +61,29 @@ matrix = model.Matrix(3, 3)
 set_random_symbols(matrix)
 
 player_1_name = sanitize_input(input("Player 1: insert your name, then press enter: "))
+
+while player_1_name == "":
+    print("Insert a valid name")
+    player_1_name = sanitize_input(
+        input("Player 1: insert your name, then press enter: ")
+    )
+    if player_1_name != "":
+        break
+    else:
+        continue
+
 player_2_name = sanitize_input(input("Player 2: insert your name, then press enter: "))
+
+while player_2_name == "":
+    print("Insert a valid name")
+    player_2_name = sanitize_input(
+        input("Player 2: insert your name, then press enter: ")
+    )
+    if player_2_name != "":
+        break
+    else:
+        continue
+
 
 while player_2_name == player_1_name:
     print("Player name alredy exist! Insert another name")
