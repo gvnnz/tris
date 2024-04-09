@@ -69,8 +69,7 @@ while player_1_name == "":
     )
     if player_1_name != "":
         break
-    else:
-        continue
+
 
 player_2_name = sanitize_input(input("Player 2: insert your name, then press enter: "))
 
@@ -81,19 +80,16 @@ while player_2_name == "":
     )
     if player_2_name != "":
         break
-    else:
-        continue
 
 
 while player_2_name == player_1_name:
-    print("Player name alredy exist! Insert another name")
+    print("Player name already exist! Insert another name")
     player_2_name = sanitize_input(
         input("Player 2: insert your name, then press enter: ")
     )
     if player_2_name != player_1_name:
         break
-    else:
-        continue
+
 
 player_1 = model.Player(player_1_name, 1)
 player_2 = model.Player(player_2_name, 2)
