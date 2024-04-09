@@ -79,7 +79,6 @@ while player_2_name == "" or player_2_name == player_1_name:
         player_2_name = sanitize_input(
             input("Player 2: insert your name, then press enter: ")
         )
-        continue
     else:
         print("Insert a valid name")
         player_2_name = sanitize_input(
